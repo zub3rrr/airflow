@@ -12,9 +12,9 @@ except ImportError:
     dag_id="call_website_dag",
     schedule=None,
     start_date=datetime(2026, 3, 18),
-    tags=["antigravity"],
+    tags=["example:Operator", "BashOperator"],
 )
-def call_website_workflow():
+def call_bashOperator_workflow():
     """
     Airflow 3.0 DAG to print a message and run a bash command calling a particular website.
     """
@@ -33,6 +33,7 @@ def call_website_workflow():
 
     @task.bash
     def run_after_run_bash_website_call_function():
+        """Also another way to call bash command using task decorator"""
         return "echo Hello , Zub3r Ahm3d"
 
 
@@ -40,4 +41,4 @@ def call_website_workflow():
     print_intro() >> run_bash_website_call >> run_after_run_bash_website_call_function()
 
 # Instantiate the DAG
-call_website_workflow()
+call_bashOperator_workflow()
